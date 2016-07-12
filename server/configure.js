@@ -8,13 +8,18 @@ var path = require('path'),
     morgan = require('morgan'),
     methodOverride = require('method-override'),
     errorHandler = require('errorhandler'),
-    moment = require('moment');
+    moment = require('moment'),
+    multer = require('multer');
 
 module.exports = function(app) {
   // responsible for logging
   app.use(morgan('dev'));
 
   // facilitate packing form fields via req.body
+  app.use(bodyParser({
+    uploadDir: path.join(__dirname, 'public/upload/temp')
+  }));
+  app.use(multer({ dest: path.join(__dirname,'public/upload/temp')}));
   app.use(bodyParser.urlencoded({'extended': true}));
   app.use(bodyParser.json());
 
