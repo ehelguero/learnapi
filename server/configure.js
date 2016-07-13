@@ -16,10 +16,7 @@ module.exports = function(app) {
   app.use(morgan('dev'));
 
   // facilitate packing form fields via req.body
-  app.use(bodyParser({
-    uploadDir: path.join(__dirname, 'public/upload/temp')
-  }));
-  app.use(multer({ dest: path.join(__dirname,'public/upload/temp')}));
+  app.use(multer({ dest: path.join(__dirname,'public/upload/temp')}).single('file'));
   app.use(bodyParser.urlencoded({'extended': true}));
   app.use(bodyParser.json());
 
