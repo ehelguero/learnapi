@@ -34,7 +34,7 @@ module.exports = {
     };
     sidebar(viewModel, function(viewModel){
       res.render('image', viewModel);
-    }
+    });
   },
   create: function(req,res){
     console.log(req.file)
