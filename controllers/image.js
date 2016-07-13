@@ -1,6 +1,6 @@
 var fs = require('fs'),
     path = require('path');
-
+var sidebar = require('../helpers/sidebar');
 module.exports = {
   index: function(req,res){
     var viewModel = {
@@ -32,7 +32,9 @@ module.exports = {
         }
       ]
     };
-    res.render('image', viewModel);
+    sidebar(viewModel, function(viewModel){
+      res.render('image', viewModel);
+    }
   },
   create: function(req,res){
     console.log(req.file)
@@ -50,7 +52,7 @@ module.exports = {
       var tempPath = req.file.path,
           ext = path.extname(req.file.originalname).toLowerCase(),
           targetPath = path.resolve('./public/upload/' + imgUrl + ext);
-          
+
       if(ext === '.png' || ext === '.jpg' || ext === '.jpeg' || ext === '.gif') {
         fs.rename(tempPath, targetPath, function(err) {
           if(err) throw err;
