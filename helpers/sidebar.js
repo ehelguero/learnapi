@@ -1,7 +1,7 @@
 // import modules
 var Stats = require('./stats'),
     Images = require('./images'),
-    Comments = require('.comments');
+    Comments = require('./comments');
 
 module.exports = function(viewModel, callback) {
   viewModel.sidebar = {
