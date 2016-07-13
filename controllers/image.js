@@ -71,7 +71,7 @@ module.exports = {
     saveImage();
   },
   like: function(req,res){
-    res.send('Hola');
+    res.json({likes: 1});
   },
   comment: function(req,res){
     res.send('Chau');
